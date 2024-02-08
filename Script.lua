@@ -22,7 +22,7 @@ function story(aName)
     if(aName == "pak jezelf op en ren weg") then 
 	    CLS()
 		setBackground("huis.jpg")
-		createTextfield("Er staat een verlaten huis voor je, de karen valt en laat haar lgbtq vlag vallen")
+		createTextfield("Er staat een verlaten huis voor je, de karen valt en\n laat haar lgbtq vlag vallen")
 		createButton("naar binnen", "ren naar binnen en pak de lgbtq vlag")
 	end
 	if(aName == "naar binnen") then
@@ -35,7 +35,7 @@ function story(aName)
 	if(aName == "woonkamer") then
 	    CLS()
 	    setBackground("woonkamer.jpg")
-		createTextfield("je zit in de woonkamer en je ziet een sleutel liggen op de eettafel")
+		createTextfield("je zit in de woonkamer en je ziet een\n sleutel liggen op de eettafel")
 		if(hasKey == false) then
 			createButton("sleutel", "pak de sleutel op")
 		end
@@ -51,7 +51,7 @@ function story(aName)
 	if(aName == "trap2") then 
 		CLS()
 		setBackground("gangb.jpg")
-		createTextfield("je zit nu boven en je ziet 4 kamers 2 aan je linker kant en 2 rechts")
+		createTextfield("je zit nu boven en je ziet 4 kamers 2 aan\n je linker kant en 2 rechts")
 		createButton("gebedskamer", "ga naar het gebedskamer")
 		createButton("toilet", "ga naar het toilet")
 			createButton("grote slaapkamer", "ga naar de grote slaapkamer")
