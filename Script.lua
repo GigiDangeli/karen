@@ -8,16 +8,18 @@ exitGame(); exits the game.
 playSound(string path to sound)
 ]]--
 
-
-hasKey = false;
+local itemsPlaced = false;
+local hasKey = false;
+local hascross = false;
+local hasbible = false;
 
 function story(aName)
     if(aName == "start") then
 	    setBackground("vegan teacher.jpg")
-		createTextfield("you ran for 10 minutes form a crazed gay karen.... but you fall")
-		createButton("pick yourself up and run away", "RUN")
+		createTextfield("je rent voor 10 minuten van de gay karen.... maar je valt")
+		createButton("pak jezelf op en ren weg", "REN")
 	end
-    if(aName == "pick yourself up and run away") then 
+    if(aName == "pak jezelf op en ren weg") then 
 	    CLS()
 		setBackground("huis.jpg")
 		createTextfield("Er staat een verlaten huis voor je, de karen valt en laat haar lgbtq vlag vallen")
@@ -50,25 +52,103 @@ function story(aName)
 		CLS()
 		setBackground("gangb.jpg")
 		createTextfield("je zit nu boven en je ziet 4 kamers 2 aan je linker kant en 2 rechts")
-		createButton("gebedskamer", "ga naar de 2de rechtse kamer")
-		createButton("toilet", "ga naar de 2de linker kamer")
-			createButton("grote slaapkamer", "ga naar de 1ste rechter kamer")
-		createButton("kinder kamer", "ga naar de 1ste linker kamer")
+		createButton("gebedskamer", "ga naar het gebedskamer")
+		createButton("toilet", "ga naar het toilet")
+			createButton("grote slaapkamer", "ga naar de grote slaapkamer")
+		createButton("kinder kamer", "ga naar de kleine slaapkamer")
+		createButton("naar binnen", "ga terug naar beneden")
+		createButton("zolder", "ga naar de zolder")
 	end	
 	if(aName == "grote slaapkamer") then 
 	    if hasKey then
 			CLS()
 			setBackground("slaapkamer.jpg")
 			createTextfield("je hebt met de sleutel de deur geopend en je ziet een kruis op het nachtkastje liggen")
-			createButton("kruis", "pak het kruis")
+			if(hascross == false) then
+				createButton("kruis", "pak het kruis")
+			end
 			createButton("trap2", "ga terug")
 		else
 			CLS()
 			createButton("trap2", "De deur zit op slot, ga terug.")
 		end
 	end
-end
+	if(aName == "kruis") then
+		if not hascross then
+			CLS()
+			setBackground("slaapkamer.jpg")
+			createTextfield("je hebt het kruis opgepakt")
+			hascross = true;
+			createButton("trap2", "ga terug naar de gang")
+		else 
+			createButton("het kruis", "het kruis is verdwenen")
+		end
 
+	end
+	if(aName == "toilet") then
+		CLS()
+		setBackground("bathroom.jpg")
+		createTextfield("hier is niks ga terug")
+		createButton("trap2", "ga terug")
+	end
+	if(aName == "kinder kamer") then
+		CLS()
+		setBackground("images.jpg")
+		createTextfield("hier is niks ga terug")
+		createButton("trap2", "ga terug")
+	end
+	if(aName == "zolder") then
+		CLS()
+		setBackground("zolder.jpg")
+		createTextfield("er ligt een bijbel achter een doos")
+		if(not hasbible) then
+			createButton("bijbel", "pak de bijbel op")
+			hasbible = true
+		end
+		createButton("trap2", "ga terug naar beneden")
+	end
+	if(aName == "bijbel") then
+		CLS()
+		setBackground("zolder.jpg")
+		if(not hasbible) then
+			createButton("bijbel", "je pakt de bijbel op")
+			hasbible = true
+		end
+		createButton("trap2", "ga terug naar beneden")
+	end
+	if(aName == "gebedskamer") then
+		CLS()
+		setBackground("vegan.jpg")
+		createTextfield("dit is waar je de gay karen kan veranderen")
+		
+		if(itemsPlaced == true) then
+			if(not hasbible or not hascross) then
+				createTextfield("Je hebt nog niet alles wat je nodig hebt.")
+			else
+				createTextfield("Je hebt de bijbel en het kruis in het gebedskamer geplaatst.")
+				createButton("einde", "Bekijk het einde")
+			end
+		else
+			CLS()
+			if(hasbible and hascross) then
+				createTextfield("je hebt alles om de gay karen te ontgayen")
+				createButton("insert", "plaats hier de bijbel en het kruis")
+			else
+				createTextfield("Je hebt nog niet alles wat je nodig hebt.")
+				createButton("trap2", "ga terug naar da gang")
+
+			end
+		end
+		if(aName == "insert") then
+			itemsPlaced = true
+			createTextfield("Je hebt de bijbel en het kruis in het gebedskamer geplaatst.")
+			createButton("einde", "Bekijk het einde")
+		end
+	end
+    if(aName == "insert") then
+        exitGame()
+    end
+end
 
 
 	      
